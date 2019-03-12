@@ -1,0 +1,2 @@
+maze algorithms
+ - http://www.astrolog.org/labyrnth/algrithm.htm
