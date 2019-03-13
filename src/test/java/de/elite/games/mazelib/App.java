@@ -34,9 +34,10 @@ public class App extends Application {
     public void start(Stage primaryStage) {
         TestMazeMapPartFactory mapPartFactory = new TestMazeMapPartFactory();
         TestMazeMapFactory mapFactory = new TestMazeMapFactory(mapPartFactory);
-        testMazeMap = mapFactory.createMap(5, 4, MapStyle.TRIANGLE_HORIZONTAL);
+        testMazeMap = mapFactory.createMap(5, 4, MapStyle.SQUARE4);
         testMazeMap.scale(12f);
         testMazeMap.pan(10, 10);
+
 
         testMazeMapWalker = mapPartFactory.createWalker();
 
