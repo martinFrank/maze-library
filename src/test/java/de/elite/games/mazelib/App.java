@@ -20,11 +20,11 @@ import java.util.Optional;
 public class App extends Application {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-    private TestMazeMap testMazeMap;
-    private TestMazeMapWalker testMazeMapWalker;
+    private TestMap demoMap;
+    private TestMapWalker walker;
 
-    private TestMazeMapField start;
-    private TestMazeMapField end;
+    private TestMapField start;
+    private TestMapField end;
 
     public static void main(String[] args) {
         launch(args);
@@ -32,25 +32,31 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        TestMazeMapPartFactory mapPartFactory = new TestMazeMapPartFactory();
-        TestMazeMapFactory mapFactory = new TestMazeMapFactory(mapPartFactory);
-        testMazeMap = mapFactory.createMap(5, 4, MapStyle.SQUARE4);
-        testMazeMap.scale(12f);
-        testMazeMap.pan(10, 10);
+        TestMapPartFactory mapPartFactory = new TestMapPartFactory();
+        TestMapFactory mapFactory = new TestMapFactory(mapPartFactory);
+//        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_HORIZONTAL);
+        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_VERTICAL);
+//        demoMap = mapFactory.createMap(8, 6, MapStyle.HEX_VERTICAL);
+//        demoMap = mapFactory.createMap(3, 3, MapStyle.SQUARE8);
+        demoMap.scale(12f);
+        demoMap.pan(10, 10);
 
+        MazeGenerationParams params = new MazeGenerationParams();
 
-        testMazeMapWalker = mapPartFactory.createWalker();
+        demoMap.generateMaze(params);
+
+        walker = mapPartFactory.createWalker();
 
         primaryStage.setTitle("Hello World!");
         BorderPane border = new BorderPane();
-        Canvas canvas = new Canvas(300, 250);
+        Canvas canvas = new Canvas(450, 250);
 
         canvas.addEventFilter(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
             int x = (int) mouseEvent.getX();
             int y = (int) mouseEvent.getY();
-            Optional<TestMazeMapPoint> point = testMazeMap.getPoint(x, y);
-            Optional<TestMazeMapEdge> edge = testMazeMap.getEdge(x, y);
-            Optional<TestMazeMapField> field = testMazeMap.getField(x, y);
+            Optional<TestMapPoint> point = demoMap.getPoint(x, y);
+            Optional<TestMapEdge> edge = demoMap.getEdge(x, y);
+            Optional<TestMapField> field = demoMap.getField(x, y);
             LOGGER.debug("x/y:{}/{} Point:{}", x, y, point);
             LOGGER.debug("x/y:{}/{} Edge:{} ", x, y, edge);
             LOGGER.debug("x/y:{}/{} Field:{}, index{} ", x, y, field, field.isPresent() ? field.get().getIndex() : "");
@@ -74,12 +80,12 @@ public class App extends Application {
                 end = field.get();
             }
             if (start != null && end != null && !start.equals(end)) {
-                for (TestMazeMapField any : testMazeMap.getFields()) {
+                for (TestMapField any : demoMap.getFields()) {
                     any.getData().markAsPath(false);
                 }
-                List<TestMazeMapField> path = testMazeMap.aStar(start, end, testMazeMapWalker, 10);
+                List<TestMapField> path = demoMap.aStar(start, end, walker, 100);
                 LOGGER.debug("Path length = {}", path.size());
-                for (TestMazeMapField pathField : path) {
+                for (TestMapField pathField : path) {
                     pathField.getData().markAsPath(true);
                 }
                 GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -97,8 +103,8 @@ public class App extends Application {
 
 
     private void drawShapes(GraphicsContext gc) {
-        if (testMazeMap != null) {
-            testMazeMap.draw(gc);
+        if (demoMap != null) {
+            demoMap.draw(gc);
         }
     }
 }
