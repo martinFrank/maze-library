@@ -1,22 +1,22 @@
 package de.elite.games.mazelib.map;
 
-import de.elite.games.mazelib.data.TestMazeMapPointData;
+import de.elite.games.mazelib.data.TestPointData;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class TestMazeMapPoint extends MazeMapPoint<TestMazeMapPointData, TestMazeMapField, TestMazeMapEdge, TestMazeMapPoint> {
+public class TestMapPoint extends MazeMapPoint<TestPointData, TestMapField, TestMapEdge, TestMapPoint> {
 
-    public TestMazeMapPoint(int x, int y) {
+    public TestMapPoint(int x, int y) {
         super(x, y);
     }
 
     @Override
-    public TestMazeMapPointData getData() {
+    public TestPointData getData() {
         return null;
     }
 
     @Override
-    public void setData(TestMazeMapPointData testPointData) {
+    public void setData(TestPointData testPointData) {
 
     }
 

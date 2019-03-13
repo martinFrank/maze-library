@@ -2,25 +2,25 @@ package de.elite.games.mazelib.map;
 
 import de.elite.games.geolib.GeoPoint;
 import de.elite.games.maplib.MapPoint;
-import de.elite.games.mazelib.data.TestMazeMapFieldData;
+import de.elite.games.mazelib.data.TestFieldData;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class TestMazeMapField extends MazeMapField<TestMazeMapFieldData, TestMazeMapField, TestMazeMapEdge, TestMazeMapPoint> {
+public class TestMapField extends MazeMapField<TestFieldData, TestMapField, TestMapEdge, TestMapPoint> {
 
-    private TestMazeMapFieldData testFieldData = new TestMazeMapFieldData();
+    private TestFieldData testFieldData = new TestFieldData();
 
-    public TestMazeMapField(GeoPoint index) {
+    public TestMapField(GeoPoint index) {
         super(index);
     }
 
     @Override
-    public TestMazeMapFieldData getData() {
+    public TestFieldData getData() {
         return testFieldData;
     }
 
     @Override
-    public void setData(TestMazeMapFieldData testFieldData) {
+    public void setData(TestFieldData testFieldData) {
         this.testFieldData = testFieldData;
 
     }
@@ -34,7 +34,7 @@ public class TestMazeMapField extends MazeMapField<TestMazeMapFieldData, TestMaz
         double[] ys = getPointsOrdered().stream().mapToDouble(MapPoint::getTransformedY).toArray();
         int amount = Math.min(xs.length, ys.length);
         gc.fillPolygon(xs, ys, amount);
-        for (TestMazeMapEdge e : getEdges()) {
+        for (TestMapEdge e : getEdges()) {
             e.draw(graphics);
         }
     }

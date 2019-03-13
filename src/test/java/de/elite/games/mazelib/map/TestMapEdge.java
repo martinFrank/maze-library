@@ -1,24 +1,26 @@
 package de.elite.games.mazelib.map;
 
 
-import de.elite.games.mazelib.data.TestMazeMapEdgeData;
+import de.elite.games.mazelib.data.TestEdgeData;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class TestMazeMapEdge extends MazeMapEdge<TestMazeMapEdgeData, TestMazeMapField, TestMazeMapEdge, TestMazeMapPoint> {
+public class TestMapEdge extends MazeMapEdge<TestEdgeData, TestMapField, TestMapEdge, TestMapPoint> {
 
-    public TestMazeMapEdge(TestMazeMapPoint a, TestMazeMapPoint b) {
+    private TestEdgeData testEdgeData = new TestEdgeData();
+
+    public TestMapEdge(TestMapPoint a, TestMapPoint b) {
         super(a, b);
     }
 
     @Override
-    public TestMazeMapEdgeData getData() {
-        return null;
+    public TestEdgeData getData() {
+        return testEdgeData;
     }
 
     @Override
-    public void setData(TestMazeMapEdgeData testEdgeData) {
-
+    public void setData(TestEdgeData testEdgeData) {
+        this.testEdgeData = testEdgeData;
     }
 
     @Override
@@ -27,13 +29,15 @@ public class TestMazeMapEdge extends MazeMapEdge<TestMazeMapEdgeData, TestMazeMa
         gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
         gc.setLineWidth(0.5);
-        TestMazeMapPoint a = getA();
-        TestMazeMapPoint b = getB();
+        TestMapPoint a = getA();
+        TestMapPoint b = getB();
         double ax = a.getScaledX() + a.getPanX();
         double ay = a.getScaledY() + a.getPanY();
         double bx = b.getScaledX() + b.getPanX();
         double by = b.getScaledY() + b.getPanY();
-        gc.strokeLine(ax, ay, bx, by);
+        if (getData().getPassage().isClosed()) {
+            gc.strokeLine(ax, ay, bx, by);
+        }
 
     }
 
