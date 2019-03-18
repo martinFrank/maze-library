@@ -35,8 +35,8 @@ public class App extends Application {
         TestMapPartFactory mapPartFactory = new TestMapPartFactory();
         TestMapFactory mapFactory = new TestMapFactory(mapPartFactory);
 //        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_HORIZONTAL);
-        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_VERTICAL);
-//        demoMap = mapFactory.createMap(8, 6, MapStyle.HEX_VERTICAL);
+//        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_VERTICAL);
+        demoMap = mapFactory.createMap(8, 6, MapStyle.HEX_VERTICAL);
 //        demoMap = mapFactory.createMap(3, 3, MapStyle.SQUARE8);
         demoMap.scale(12f);
         demoMap.pan(10, 10);

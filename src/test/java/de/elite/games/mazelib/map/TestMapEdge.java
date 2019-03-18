@@ -14,18 +14,15 @@ public class TestMapEdge extends MazeMapEdge<TestEdgeData, TestMapField, TestMap
     @Override
     public void draw(Object graphics) {
         GraphicsContext gc = (GraphicsContext) graphics;
-        gc.setFill(Color.GREEN);
-        gc.setStroke(Color.BLUE);
-        gc.setLineWidth(0.5);
+        gc.setStroke(getData().getPassage().isClosed() ? Color.BLACK : Color.LIGHTGRAY);
+        gc.setLineWidth(getData().getPassage().isClosed() ? 2 : 1);
         TestMapPoint a = getA();
         TestMapPoint b = getB();
         double ax = a.getScaledX() + a.getPanX();
         double ay = a.getScaledY() + a.getPanY();
         double bx = b.getScaledX() + b.getPanX();
         double by = b.getScaledY() + b.getPanY();
-        if (getData().getPassage().isClosed()) {
-            gc.strokeLine(ax, ay, bx, by);
-        }
+        gc.strokeLine(ax, ay, bx, by);
 
     }
 

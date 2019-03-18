@@ -15,7 +15,7 @@ public class TestMapField extends MazeMapField<TestFieldData, TestMapField, Test
 
     @Override
     public void draw(Object graphics) {
-        Color color = getData().isMarkedAsPath() ? Color.YELLOW : Color.WHITE;
+        Color color = getData().isMarkedAsPath() ? Color.YELLOW : getData().isDeadEnd() ? Color.LIGHTGRAY : Color.WHITE;
         GraphicsContext gc = (GraphicsContext) graphics;
         gc.setFill(color);
         double[] xs = getPointsOrdered().stream().mapToDouble(MapPoint::getTransformedX).toArray();

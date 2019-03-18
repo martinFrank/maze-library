@@ -6,8 +6,9 @@ import de.elite.games.mazelib.MazeGenerationParams;
 import de.elite.games.mazelib.algorithm.PerfectMazeAlgorithm;
 import de.elite.games.mazelib.algorithm.RecursiveBacktracker;
 import de.elite.games.mazelib.mapdata.MazeMapEdgeData;
+import de.elite.games.mazelib.mapdata.MazeMapFieldData;
 
-public abstract class MazeMap<D, F extends MazeMapField<?, F, E, P>, E extends MazeMapEdge<? extends MazeMapEdgeData, F, E, P>, P extends MazeMapPoint<?, F, E, P>, W extends MazeMapWalker<F, E, P>> extends Map<D, F, E, P, W> {
+public abstract class MazeMap<D, F extends MazeMapField<? extends MazeMapFieldData, F, E, P>, E extends MazeMapEdge<? extends MazeMapEdgeData, F, E, P>, P extends MazeMapPoint<?, F, E, P>, W extends MazeMapWalker<F, E, P>> extends Map<D, F, E, P, W> {
 
     public MazeMap(int width, int height, MapStyle style, D d) {
         super(width, height, style, d);
