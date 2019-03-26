@@ -5,7 +5,7 @@ import de.elite.games.mazelib.data.TestFieldData;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class TestMapField extends MazeMapField<TestFieldData, TestMapField, TestMapEdge, TestMapPoint> {
+public class TestMapField extends MazeMapField<TestFieldData, TestMapField, TestMapEdge, TestMapNode> {
 
 
     public TestMapField(TestFieldData testFieldData) {
@@ -23,6 +23,9 @@ public class TestMapField extends MazeMapField<TestFieldData, TestMapField, Test
         gc.fillPolygon(xs, ys, amount);
         for (TestMapEdge e : getEdges()) {
             e.draw(graphics);
+        }
+        for (TestMapNode n : getNodes()) {
+            n.draw(graphics);
         }
     }
 

@@ -6,7 +6,7 @@ import de.elite.games.mazelib.data.TestEdgeData;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class TestMapEdge extends MazeMapEdge<TestEdgeData, TestMapField, TestMapEdge, TestMapPoint> {
+public class TestMapEdge extends MazeMapEdge<TestEdgeData, TestMapField, TestMapEdge, TestMapNode> {
 
     public TestMapEdge(TestEdgeData testEdgeData) {
         super(testEdgeData);

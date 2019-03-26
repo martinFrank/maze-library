@@ -37,7 +37,7 @@ public class App extends Application {
 //        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_HORIZONTAL);
 //        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_VERTICAL);
 //        demoMap = mapFactory.createMap(8, 6, MapStyle.HEX_VERTICAL);
-        demoMap = mapFactory.createMap(8, 12, MapStyle.SQUARE_ISOMETRIC);
+        demoMap = mapFactory.createMap(7, 12, MapStyle.SQUARE_ISOMETRIC);
 //        demoMap = mapFactory.createMap(3, 3, MapStyle.SQUARE8);
         demoMap.scale(12f);
 
@@ -47,14 +47,14 @@ public class App extends Application {
 
         walker = mapPartFactory.createWalker();
 
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Maze Demo");
         BorderPane border = new BorderPane();
         Canvas canvas = new Canvas(demoMap.getTransformed().getWidth(), demoMap.getTransformed().getHeight());
 
         canvas.addEventFilter(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
             int x = (int) mouseEvent.getX();
             int y = (int) mouseEvent.getY();
-            Optional<TestMapPoint> point = demoMap.getNodeAt(x, y);
+            Optional<TestMapNode> point = demoMap.getNodeAt(x, y);
             Optional<TestMapEdge> edge = demoMap.getEdgeAt(x, y);
             Optional<TestMapField> field = demoMap.getFieldAt(x, y);
             LOGGER.debug("x/y:{}/{} Point:{}", x, y, point);

@@ -1,12 +1,12 @@
 package de.elite.games.mazelib.map;
 
-import de.elite.games.mazelib.data.TestPointData;
+import de.elite.games.mazelib.data.TestNodeData;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class TestMapPoint extends MazeMapPoint<TestPointData, TestMapField, TestMapEdge, TestMapPoint> {
+public class TestMapNode extends MazeMapPoint<TestNodeData, TestMapField, TestMapEdge, TestMapNode> {
 
-    public TestMapPoint(TestPointData testPointData) {
+    public TestMapNode(TestNodeData testPointData) {
         super(testPointData);
     }
 
@@ -14,7 +14,7 @@ public class TestMapPoint extends MazeMapPoint<TestPointData, TestMapField, Test
     @Override
     public void draw(Object graphics) {
         GraphicsContext gc = (GraphicsContext) graphics;
-        gc.setFill(Color.RED);
+        gc.setStroke(Color.DARKCYAN);
         gc.setLineWidth(3);
         double x = getPoint().getTransformed().getX();
         double y = getPoint().getTransformed().getY();

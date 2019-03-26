@@ -2,7 +2,7 @@ package de.elite.games.mazelib.map;
 
 import java.util.Optional;
 
-public class TestMapWalker extends MazeMapWalker<TestMapField, TestMapEdge, TestMapPoint> {
+public class TestMapWalker extends MazeMapWalker<TestMapField, TestMapEdge, TestMapNode> {
     @Override
     public boolean canEnter(TestMapField from, TestMapField into) {
         Optional<TestMapEdge> edge = from.getEdge(into);

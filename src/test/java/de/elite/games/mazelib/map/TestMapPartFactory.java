@@ -4,13 +4,13 @@ import de.elite.games.maplib.MapStyle;
 import de.elite.games.mazelib.data.TestEdgeData;
 import de.elite.games.mazelib.data.TestFieldData;
 import de.elite.games.mazelib.data.TestMapData;
-import de.elite.games.mazelib.data.TestPointData;
+import de.elite.games.mazelib.data.TestNodeData;
 
-public class TestMapPartFactory extends MazeMapPartFactory<TestMap, TestMapField, TestMapEdge, TestMapPoint, TestMapWalker> {
+public class TestMapPartFactory extends MazeMapPartFactory<TestMap, TestMapField, TestMapEdge, TestMapNode, TestMapWalker> {
 
     @Override
-    public TestMapPoint createMapNode() {
-        return new TestMapPoint(new TestPointData());
+    public TestMapNode createMapNode() {
+        return new TestMapNode(new TestNodeData());
     }
 
     @Override
