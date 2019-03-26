@@ -6,8 +6,8 @@ import javafx.scene.paint.Color;
 
 public class TestMapPoint extends MazeMapPoint<TestPointData, TestMapField, TestMapEdge, TestMapPoint> {
 
-    public TestMapPoint(int x, int y, TestPointData testPointData) {
-        super(x, y, testPointData);
+    public TestMapPoint(TestPointData testPointData) {
+        super(testPointData);
     }
 
 
@@ -16,8 +16,8 @@ public class TestMapPoint extends MazeMapPoint<TestPointData, TestMapField, Test
         GraphicsContext gc = (GraphicsContext) graphics;
         gc.setFill(Color.RED);
         gc.setLineWidth(3);
-        double x = getTransformedX();
-        double y = getTransformedY();
+        double x = getPoint().getTransformed().getX();
+        double y = getPoint().getTransformed().getY();
         gc.strokeLine(x, y, x, y);
     }
 

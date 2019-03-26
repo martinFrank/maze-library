@@ -1,6 +1,5 @@
 package de.elite.games.mazelib.map;
 
-import de.elite.games.geolib.GeoPoint;
 import de.elite.games.maplib.MapStyle;
 import de.elite.games.mazelib.data.TestEdgeData;
 import de.elite.games.mazelib.data.TestFieldData;
@@ -10,18 +9,18 @@ import de.elite.games.mazelib.data.TestPointData;
 public class TestMapPartFactory extends MazeMapPartFactory<TestMap, TestMapField, TestMapEdge, TestMapPoint, TestMapWalker> {
 
     @Override
-    public TestMapPoint createMapPoint(int x, int y) {
-        return new TestMapPoint(x, y, new TestPointData());
+    public TestMapPoint createMapNode() {
+        return new TestMapPoint(new TestPointData());
     }
 
     @Override
-    public TestMapEdge createMapEdge(TestMapPoint a, TestMapPoint b) {
-        return new TestMapEdge(a, b, new TestEdgeData());
+    public TestMapEdge createMapEdge() {
+        return new TestMapEdge(new TestEdgeData());
     }
 
     @Override
-    public TestMapField createMapField(GeoPoint index) {
-        return new TestMapField(index, new TestFieldData());
+    public TestMapField createMapField() {
+        return new TestMapField(new TestFieldData());
     }
 
     @Override

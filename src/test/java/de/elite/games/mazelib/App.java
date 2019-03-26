@@ -36,10 +36,10 @@ public class App extends Application {
         TestMapFactory mapFactory = new TestMapFactory(mapPartFactory);
 //        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_HORIZONTAL);
 //        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_VERTICAL);
-        demoMap = mapFactory.createMap(8, 6, MapStyle.HEX_VERTICAL);
+//        demoMap = mapFactory.createMap(8, 6, MapStyle.HEX_VERTICAL);
+        demoMap = mapFactory.createMap(8, 12, MapStyle.SQUARE_ISOMETRIC);
 //        demoMap = mapFactory.createMap(3, 3, MapStyle.SQUARE8);
         demoMap.scale(12f);
-        demoMap.pan(10, 10);
 
         MazeGenerationParams params = new MazeGenerationParams();
 
@@ -49,22 +49,22 @@ public class App extends Application {
 
         primaryStage.setTitle("Hello World!");
         BorderPane border = new BorderPane();
-        Canvas canvas = new Canvas(450, 250);
+        Canvas canvas = new Canvas(demoMap.getTransformed().getWidth(), demoMap.getTransformed().getHeight());
 
         canvas.addEventFilter(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
             int x = (int) mouseEvent.getX();
             int y = (int) mouseEvent.getY();
-            Optional<TestMapPoint> point = demoMap.getPoint(x, y);
-            Optional<TestMapEdge> edge = demoMap.getEdge(x, y);
-            Optional<TestMapField> field = demoMap.getField(x, y);
+            Optional<TestMapPoint> point = demoMap.getNodeAt(x, y);
+            Optional<TestMapEdge> edge = demoMap.getEdgeAt(x, y);
+            Optional<TestMapField> field = demoMap.getFieldAt(x, y);
             LOGGER.debug("x/y:{}/{} Point:{}", x, y, point);
-            LOGGER.debug("x/y:{}/{} Edge:{} ", x, y, edge);
-            LOGGER.debug("x/y:{}/{} Field:{}, index{} ", x, y, field, field.isPresent() ? field.get().getIndex() : "");
+            LOGGER.debug("x/y:{}/{} Edge:{}", x, y, edge);
+            LOGGER.debug("x/y:{}/{} Field:{}", x, y, field);
 
             if (field.isPresent()) {
                 LOGGER.debug("field.getFields().size()={}", field.get().getFields().size());
                 LOGGER.debug("field.getEdges().size()={}", field.get().getEdges().size());
-                LOGGER.debug("field.getPoints().size()={}", field.get().getPoints().size());
+                LOGGER.debug("field.getPoints().size()={}", field.get().getNodes().size());
             }
             edge.ifPresent(testMapField -> LOGGER.debug("edge.getFields().size()={}", testMapField.getFields().size()));
 

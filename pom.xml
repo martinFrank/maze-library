@@ -32,7 +32,7 @@
         <dependency>
             <groupId>de.elite.games</groupId>
             <artifactId>drawlib</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.3.0</version>
         </dependency>
         <dependency>
             <groupId>de.elite.games</groupId>
@@ -42,7 +42,7 @@
         <dependency>
             <groupId>de.elite.games</groupId>
             <artifactId>maplib</artifactId>
-            <version>0.2.1</version>
+            <version>0.3.0</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
