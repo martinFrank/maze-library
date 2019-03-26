@@ -1,5 +1,6 @@
 package de.elite.games.mazelib.map;
 
+import java.util.List;
 import java.util.Optional;
 
 public class TestMapWalker extends MazeMapWalker<TestMapField, TestMapEdge, TestMapNode> {
@@ -12,5 +13,10 @@ public class TestMapWalker extends MazeMapWalker<TestMapField, TestMapEdge, Test
     @Override
     public int getEnterCosts(TestMapField from, TestMapField into) {
         return 10;
+    }
+
+    @Override
+    public List<TestMapField> getNeighbours(TestMapField field) {
+        return getNeighboursFromEdges(field);
     }
 }
