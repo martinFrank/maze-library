@@ -40,15 +40,23 @@ public class RecursiveBacktrackerWithPassages<M extends MazeMap<?, F, E, N, ?>,
         F current = getMapAccessor().getRandomStart();
         Set<F> closed = new HashSet<>();
         closed.add(current);
+        int counter = 0;
+        current.getData().setCounter(counter);
+        counter++;
+
         do {
-            List<F> nbgs = getMapAccessor().getNeighborsForPassageCarving(current, closed);
+            List<F> nbgs = getCarver().getNeighborsForPassageCarving(current, closed);
             if (nbgs.isEmpty()) {
                 current = stack.pop();
             } else {
                 F next = nbgs.get(0);
-                getMapAccessor().carvePassage(current, next);
+                getCarver().carvePassage(current, next);
                 stack.push(current);
                 current = next;
+
+                current.getData().setCounter(counter);
+                counter++;
+
                 closed.add(current);
             }
         } while (!stack.isEmpty());

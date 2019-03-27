@@ -14,10 +14,13 @@ public abstract class AbstractAlgorithm<M extends MazeMap<?, F, E, N, ?>,
 
     private final MapAccessor<M, F, E, N> mapAccessor;
     private final M map;
+    private final MapCarver<M, F, E, N> carver;
 
-    public AbstractAlgorithm(M map) {
+
+    AbstractAlgorithm(M map) {
         this.map = map;
         mapAccessor = new MapAccessor<>(map);
+        this.carver = new MapCarver<>(map);
     }
 
     @Override
@@ -28,6 +31,11 @@ public abstract class AbstractAlgorithm<M extends MazeMap<?, F, E, N, ?>,
     @Override
     public M getMap() {
         return map;
+    }
+
+    @Override
+    public MapCarver<M, F, E, N> getCarver() {
+        return carver;
     }
 
 }

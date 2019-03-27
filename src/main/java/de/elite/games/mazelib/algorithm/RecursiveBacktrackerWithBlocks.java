@@ -31,9 +31,10 @@ public class RecursiveBacktrackerWithBlocks<M extends MazeMap<?, F, E, N, ?>,
     private void updateFields() {
         for (F field : getMap().getFields()) {
             long amount = field.getEdges().stream().filter(e -> e.getData().getPassage().isOpen()).count();
-            field.getData().setReachable(amount == 0);
             if (!field.getData().isBlocked()) {
                 field.getData().setDeadEnd(amount == 1);
+            } else {
+                field.getData().setReachable(false);
             }
         }
     }
@@ -45,16 +46,16 @@ public class RecursiveBacktrackerWithBlocks<M extends MazeMap<?, F, E, N, ?>,
 
         int counter = 0;
         F current = getMapAccessor().getRandomStartInBounds(2);
-        getMapAccessor().carveInto(current, current);
+        getCarver().carveInto(current);
         current.getData().setCounter(counter);
         counter++;
         do {
-            List<F> nbgs = getMapAccessor().getNeighborsForWallCarving(current, closed);
+            List<F> nbgs = getCarver().getNeighborsForWallCarving(current, closed);
             if (nbgs.isEmpty()) {
                 current = stack.pop();
             } else {
                 F next = nbgs.get(0);
-                getMapAccessor().carveInto(current, next);
+                getCarver().carveInto(current, next);
                 stack.push(current);
                 current = next;
 

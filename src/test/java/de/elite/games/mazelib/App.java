@@ -1,7 +1,7 @@
 package de.elite.games.mazelib;
 
 import de.elite.games.maplib.MapStyle;
-import de.elite.games.mazelib.algorithm.Direction;
+import de.elite.games.mazelib.MazeGenerationParams.AlgorithmType;
 import de.elite.games.mazelib.map.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -37,15 +37,16 @@ public class App extends Application {
 //        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_HORIZONTAL);
 //        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_VERTICAL);
 //        demoMap = mapFactory.createMap(21, 21, MapStyle.SQUARE_ISOMETRIC);
-        demoMap = mapFactory.createMap(14, 24, MapStyle.SQUARE_ISOMETRIC);
-//        demoMap = mapFactory.createMap(21, 11, MapStyle.HEX_VERTICAL);
+//        demoMap = mapFactory.createMap(14, 24, MapStyle.SQUARE_ISOMETRIC);
+//        demoMap = mapFactory.createMap(21, 11, MapStyle.HEX_HORIZONTAL);
+        demoMap = mapFactory.createMap(14, 15, MapStyle.HEX_VERTICAL);
 //        demoMap = mapFactory.createMap(13, 13, MapStyle.SQUARE);
         demoMap.scale(11f);
 
         LOGGER.debug("map columns/rows {}/{}", demoMap.getColumns(), demoMap.getRows());
 
-        MazeGenerationParams params = new MazeGenerationParams();
-
+        MazeGenerationParams params = new MazeGenerationParams(AlgorithmType.RECURSIVE_BACKTRACKER_PASSAGES);
+//        MazeGenerationParams params = new MazeGenerationParams(AlgorithmType.RECURSIVE_BACKTRACKER_BLOCKS);
         demoMap.generateMaze(params);
 
         TestMazeMapWalker walker = mapPartFactory.createWalker();
@@ -83,16 +84,13 @@ public class App extends Application {
                 end = field.get();
             }
             if (start != null && end != null && !start.equals(end)) {
-
-                Direction dir = Direction.get(start.getIndex(), end.getIndex());
                 LOGGER.debug("start {}", start.getIndex());
                 LOGGER.debug("end   {}", end.getIndex());
-                LOGGER.debug("dir... {}", dir);
 
                 for (TestMazeMapField any : demoMap.getFields()) {
                     any.getData().markAsPath(false);
                 }
-                List<TestMazeMapField> path = demoMap.aStar(start, end, walker, 100);
+                List<TestMazeMapField> path = demoMap.aStar(start, end, walker, 1000);
                 LOGGER.debug("Path length = {}", path.size());
                 for (TestMazeMapField pathField : path) {
                     pathField.getData().markAsPath(true);

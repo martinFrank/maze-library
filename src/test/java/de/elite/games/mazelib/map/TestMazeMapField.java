@@ -19,7 +19,7 @@ public class TestMazeMapField extends MazeMapField<TestMazeMapFieldData, TestMaz
         Color color =
                 getData().isMarkedAsPath() ? Color.YELLOW :
                         getData().isDeadEnd() ? Color.LIGHTGRAY :
-                                getData().isBlocked() ? Color.BLACK : Color.WHITE;
+                                getData().isBlocked() ? Color.DARKGRAY : Color.WHITE;
 
         GraphicsContext gc = (GraphicsContext) graphics;
         gc.setFill(color);
@@ -43,7 +43,7 @@ public class TestMazeMapField extends MazeMapField<TestMazeMapFieldData, TestMaz
             String text = "" + getData().getCounter();
             double width = Toolkit.getToolkit().getFontLoader().computeStringWidth(text, gc.getFont());
             double height = Toolkit.getToolkit().getFontLoader().getFontMetrics(gc.getFont()).getDescent();
-
+            gc.setStroke(Color.MISTYROSE);
             gc.strokeText(text, shape.getCenter().getX() - width / 2, shape.getCenter().getY() + height);
         }
     }

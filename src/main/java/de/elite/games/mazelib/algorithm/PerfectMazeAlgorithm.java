@@ -17,4 +17,6 @@ public interface PerfectMazeAlgorithm<M extends MazeMap<?, F, E, N, ?>,
     MapAccessor<M, F, E, N> getMapAccessor();
 
     M getMap();
+
+    MapCarver<M, F, E, N> getCarver();
 }

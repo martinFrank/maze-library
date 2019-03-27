@@ -15,7 +15,8 @@ public class TestMazeMapEdge extends MazeMapEdge<TestMazeMapEdgeData, TestMazeMa
     @Override
     public void draw(Object graphics) {
         GraphicsContext gc = (GraphicsContext) graphics;
-        gc.setStroke(getData().getPassage().isClosed() ? Color.BLACK : Color.LIGHTGRAY);
+//        gc.setStroke(getData().getPassage().isClosed() ? Color.BLACK : Color.LIGHTGRAY);
+        gc.setStroke(getData().getPassage().isClosed() ? Color.DARKGRAY.darker() : Color.LIGHTGRAY);
         gc.setLineWidth(getData().getPassage().isClosed() ? 2 : 1);
         Point a = getLine().getA().getTransformed();
         Point b = getLine().getB().getTransformed();
