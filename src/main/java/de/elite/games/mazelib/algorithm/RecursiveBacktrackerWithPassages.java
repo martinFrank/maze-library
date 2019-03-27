@@ -3,7 +3,7 @@ package de.elite.games.mazelib.algorithm;
 import de.elite.games.mazelib.map.MazeMap;
 import de.elite.games.mazelib.map.MazeMapEdge;
 import de.elite.games.mazelib.map.MazeMapField;
-import de.elite.games.mazelib.map.MazeMapPoint;
+import de.elite.games.mazelib.map.MazeMapNode;
 import de.elite.games.mazelib.mapdata.MazeMapEdgeData;
 import de.elite.games.mazelib.mapdata.MazeMapFieldData;
 
@@ -12,9 +12,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
-public class RecursiveBacktracker<M extends MazeMap<?, F, E, P, ?>, F extends MazeMapField<? extends MazeMapFieldData, F, E, P>, E extends MazeMapEdge<? extends MazeMapEdgeData, F, E, P>, P extends MazeMapPoint<?, F, E, P>> extends AbstractAlgorithm<M, F, E, P> {
+public class RecursiveBacktrackerWithPassages<M extends MazeMap<?, F, E, N, ?>,
+        F extends MazeMapField<? extends MazeMapFieldData, F, E, N>,
+        E extends MazeMapEdge<? extends MazeMapEdgeData, F, E, N>,
+        N extends MazeMapNode<?, F, E, N>> extends AbstractAlgorithm<M, F, E, N> {
 
-    public RecursiveBacktracker(M map) {
+    public RecursiveBacktrackerWithPassages(M map) {
         super(map);
     }
 
@@ -25,7 +28,7 @@ public class RecursiveBacktracker<M extends MazeMap<?, F, E, P, ?>, F extends Ma
     }
 
     private void updateFields() {
-        for (F field : getMapAccessor().getMap().getFields()) {
+        for (F field : getMap().getFields()) {
             long amount = field.getEdges().stream().filter(e -> e.getData().getPassage().isOpen()).count();
             field.getData().setReachable(amount == 0);
             field.getData().setDeadEnd(amount == 1);
@@ -38,12 +41,12 @@ public class RecursiveBacktracker<M extends MazeMap<?, F, E, P, ?>, F extends Ma
         Set<F> closed = new HashSet<>();
         closed.add(current);
         do {
-            List<F> nbgs = getMapAccessor().getNeighbors(current, closed);
+            List<F> nbgs = getMapAccessor().getNeighborsForPassageCarving(current, closed);
             if (nbgs.isEmpty()) {
                 current = stack.pop();
             } else {
                 F next = nbgs.get(0);
-                getMapAccessor().carve(current, next);
+                getMapAccessor().carvePassage(current, next);
                 stack.push(current);
                 current = next;
                 closed.add(current);

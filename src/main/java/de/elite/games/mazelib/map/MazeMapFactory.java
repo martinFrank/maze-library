@@ -5,13 +5,13 @@ import de.elite.games.maplib.MapPartFactory;
 import de.elite.games.mazelib.mapdata.MazeMapEdgeData;
 import de.elite.games.mazelib.mapdata.MazeMapFieldData;
 
-public class MazeMapFactory<M extends MazeMap<?, F, E, P, W>,
-        F extends MazeMapField<? extends MazeMapFieldData, F, E, P>,
-        E extends MazeMapEdge<? extends MazeMapEdgeData, F, E, P>,
-        P extends MazeMapPoint<?, F, E, P>,
-        W extends MazeMapWalker<F, E, P>> extends MapFactory<M, F, E, P, W> {
+public class MazeMapFactory<M extends MazeMap<?, F, E, N, W>,
+        F extends MazeMapField<? extends MazeMapFieldData, F, E, N>,
+        E extends MazeMapEdge<? extends MazeMapEdgeData, F, E, N>,
+        N extends MazeMapNode<?, F, E, N>,
+        W extends MazeMapWalker<F, E, N>> extends MapFactory<M, F, E, N, W> {
 
-    public MazeMapFactory(MapPartFactory<M, F, E, P, W> mapPartFactory) {
+    public MazeMapFactory(MapPartFactory<M, F, E, N, W> mapPartFactory) {
         super(mapPartFactory);
     }
 }

@@ -2,7 +2,7 @@ package de.elite.games.mazelib.data;
 
 import de.elite.games.mazelib.mapdata.MazeMapFieldData;
 
-public class TestFieldData extends MazeMapFieldData {
+public class TestMazeMapFieldData extends MazeMapFieldData {
 
     private boolean isMarkedAsPath;
 

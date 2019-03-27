@@ -1,12 +1,12 @@
 package de.elite.games.mazelib.map;
 
-import de.elite.games.mazelib.data.TestNodeData;
+import de.elite.games.mazelib.data.TestMazeMapNodeData;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class TestMapNode extends MazeMapPoint<TestNodeData, TestMapField, TestMapEdge, TestMapNode> {
+public class TestMazeMapNode extends MazeMapNode<TestMazeMapNodeData, TestMazeMapField, TestMazeMapEdge, TestMazeMapNode> {
 
-    public TestMapNode(TestNodeData testPointData) {
+    public TestMazeMapNode(TestMazeMapNodeData testPointData) {
         super(testPointData);
     }
 

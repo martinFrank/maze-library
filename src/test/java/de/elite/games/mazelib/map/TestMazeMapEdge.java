@@ -2,13 +2,13 @@ package de.elite.games.mazelib.map;
 
 
 import de.elite.games.drawlib.Point;
-import de.elite.games.mazelib.data.TestEdgeData;
+import de.elite.games.mazelib.data.TestMazeMapEdgeData;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class TestMapEdge extends MazeMapEdge<TestEdgeData, TestMapField, TestMapEdge, TestMapNode> {
+public class TestMazeMapEdge extends MazeMapEdge<TestMazeMapEdgeData, TestMazeMapField, TestMazeMapEdge, TestMazeMapNode> {
 
-    public TestMapEdge(TestEdgeData testEdgeData) {
+    public TestMazeMapEdge(TestMazeMapEdgeData testEdgeData) {
         super(testEdgeData);
     }
 

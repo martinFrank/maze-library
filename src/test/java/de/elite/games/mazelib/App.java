@@ -1,6 +1,7 @@
 package de.elite.games.mazelib;
 
 import de.elite.games.maplib.MapStyle;
+import de.elite.games.mazelib.algorithm.Direction;
 import de.elite.games.mazelib.map.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -20,11 +21,10 @@ import java.util.Optional;
 public class App extends Application {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-    private TestMap demoMap;
-    private TestMapWalker walker;
+    private TestMazeMap demoMap;
 
-    private TestMapField start;
-    private TestMapField end;
+    private TestMazeMapField start;
+    private TestMazeMapField end;
 
     public static void main(String[] args) {
         launch(args);
@@ -32,20 +32,23 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        TestMapPartFactory mapPartFactory = new TestMapPartFactory();
-        TestMapFactory mapFactory = new TestMapFactory(mapPartFactory);
+        TestMazeMapPartFactory mapPartFactory = new TestMazeMapPartFactory();
+        TestMazeMapFactory mapFactory = new TestMazeMapFactory(mapPartFactory);
 //        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_HORIZONTAL);
 //        demoMap = mapFactory.createMap(8, 6, MapStyle.TRIANGLE_VERTICAL);
-//        demoMap = mapFactory.createMap(8, 6, MapStyle.HEX_VERTICAL);
-        demoMap = mapFactory.createMap(7, 12, MapStyle.SQUARE_ISOMETRIC);
-//        demoMap = mapFactory.createMap(3, 3, MapStyle.SQUARE8);
-        demoMap.scale(12f);
+//        demoMap = mapFactory.createMap(21, 21, MapStyle.SQUARE_ISOMETRIC);
+        demoMap = mapFactory.createMap(14, 24, MapStyle.SQUARE_ISOMETRIC);
+//        demoMap = mapFactory.createMap(21, 11, MapStyle.HEX_VERTICAL);
+//        demoMap = mapFactory.createMap(13, 13, MapStyle.SQUARE);
+        demoMap.scale(11f);
+
+        LOGGER.debug("map columns/rows {}/{}", demoMap.getColumns(), demoMap.getRows());
 
         MazeGenerationParams params = new MazeGenerationParams();
 
         demoMap.generateMaze(params);
 
-        walker = mapPartFactory.createWalker();
+        TestMazeMapWalker walker = mapPartFactory.createWalker();
 
         primaryStage.setTitle("Maze Demo");
         BorderPane border = new BorderPane();
@@ -54,24 +57,24 @@ public class App extends Application {
         canvas.addEventFilter(MouseEvent.MOUSE_PRESSED, mouseEvent -> {
             int x = (int) mouseEvent.getX();
             int y = (int) mouseEvent.getY();
-            Optional<TestMapNode> point = demoMap.getNodeAt(x, y);
-            Optional<TestMapEdge> edge = demoMap.getEdgeAt(x, y);
-            Optional<TestMapField> field = demoMap.getFieldAt(x, y);
-            LOGGER.debug("x/y:{}/{} Point:{}", x, y, point);
-            LOGGER.debug("x/y:{}/{} Edge:{}", x, y, edge);
-            LOGGER.debug("x/y:{}/{} Field:{}", x, y, field);
+//            Optional<TestMazeMapNode> point = demoMap.getNodeAt(x, y);
+//            Optional<TestMazeMapEdge> edge = demoMap.getEdgeAt(x, y);
+            Optional<TestMazeMapField> field = demoMap.getFieldAt(x, y);
+//            LOGGER.debug("x/y:{}/{} Point:{}", x, y, point);
+//            LOGGER.debug("x/y:{}/{} Edge:{}", x, y, edge);
+//            LOGGER.debug("x/y:{}/{} Field:{}", x, y, field);
 
-            if (field.isPresent()) {
-                LOGGER.debug("field.getFields().size()={}", field.get().getFields().size());
-                LOGGER.debug("field.getEdges().size()={}", field.get().getEdges().size());
-                LOGGER.debug("field.getPoints().size()={}", field.get().getNodes().size());
-            }
-            edge.ifPresent(testMapField -> LOGGER.debug("edge.getFields().size()={}", testMapField.getFields().size()));
-
-            if (point.isPresent()) {
-                LOGGER.debug("point.getEdges().size={}", point.get().getEdges().size());
-                LOGGER.debug("point.getFields().size={}", point.get().getFields().size());
-            }
+//            if (field.isPresent()) {
+//                LOGGER.debug("field.getFields().size()={}", field.get().getFields().size());
+//                LOGGER.debug("field.getEdges().size()={}", field.get().getEdges().size());
+//                LOGGER.debug("field.getPoints().size()={}", field.get().getNodes().size());
+//            }
+//            edge.ifPresent(testMapField -> LOGGER.debug("edge.getFields().size()={}", testMapField.getFields().size()));
+//
+//            if (point.isPresent()) {
+//                LOGGER.debug("point.getEdges().size={}", point.get().getEdges().size());
+//                LOGGER.debug("point.getFields().size={}", point.get().getFields().size());
+//            }
 
             if (mouseEvent.getButton() == MouseButton.PRIMARY && field.isPresent()) {
                 start = field.get();
@@ -80,12 +83,18 @@ public class App extends Application {
                 end = field.get();
             }
             if (start != null && end != null && !start.equals(end)) {
-                for (TestMapField any : demoMap.getFields()) {
+
+                Direction dir = Direction.get(start.getIndex(), end.getIndex());
+                LOGGER.debug("start {}", start.getIndex());
+                LOGGER.debug("end   {}", end.getIndex());
+                LOGGER.debug("dir... {}", dir);
+
+                for (TestMazeMapField any : demoMap.getFields()) {
                     any.getData().markAsPath(false);
                 }
-                List<TestMapField> path = demoMap.aStar(start, end, walker, 100);
+                List<TestMazeMapField> path = demoMap.aStar(start, end, walker, 100);
                 LOGGER.debug("Path length = {}", path.size());
-                for (TestMapField pathField : path) {
+                for (TestMazeMapField pathField : path) {
                     pathField.getData().markAsPath(true);
                 }
                 GraphicsContext gc = canvas.getGraphicsContext2D();
