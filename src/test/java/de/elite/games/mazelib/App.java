@@ -45,8 +45,8 @@ public class App extends Application {
 
         LOGGER.debug("map columns/rows {}/{}", demoMap.getColumns(), demoMap.getRows());
 
-        MazeGenerationParams params = new MazeGenerationParams(AlgorithmType.RECURSIVE_BACKTRACKER_PASSAGES);
-//        MazeGenerationParams params = new MazeGenerationParams(AlgorithmType.RECURSIVE_BACKTRACKER_BLOCKS);
+//        MazeGenerationParams params = new MazeGenerationParams(AlgorithmType.RECURSIVE_BACKTRACKER_PASSAGES);
+        MazeGenerationParams params = new MazeGenerationParams(AlgorithmType.RECURSIVE_BACKTRACKER_BLOCKS);
         demoMap.generateMaze(params);
 
         TestMazeMapWalker walker = mapPartFactory.createWalker();
