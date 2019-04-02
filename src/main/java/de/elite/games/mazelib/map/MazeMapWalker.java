@@ -1,6 +1,6 @@
 package de.elite.games.mazelib.map;
 
-import de.elite.games.maplib.MapWalker;
+import com.github.martinfrank.maplib.MapWalker;
 
 public abstract class MazeMapWalker<F extends MazeMapField<?, F, E, N>,
         E extends MazeMapEdge<?, F, E, N>,

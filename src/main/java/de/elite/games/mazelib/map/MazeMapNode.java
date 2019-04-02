@@ -1,6 +1,6 @@
 package de.elite.games.mazelib.map;
 
-import de.elite.games.maplib.MapNode;
+import com.github.martinfrank.maplib.MapNode;
 
 public abstract class MazeMapNode<D,
         F extends MazeMapField<?, F, E, N>,

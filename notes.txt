@@ -1,2 +1,6 @@
 maze algorithms
  - http://www.astrolog.org/labyrnth/algrithm.htm
+
+rpgs:
+ - https://drive.google.com/file/d/1J_gPJjuDygOQWnVKXyLcAuGcIUNHeSsf/view
+ - http://members.tripod.com/lord_eadric/netequip.html

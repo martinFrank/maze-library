@@ -1,6 +1,6 @@
 package de.elite.games.mazelib.map;
 
-import de.elite.games.maplib.MapPartFactory;
+import com.github.martinfrank.maplib.MapPartFactory;
 import de.elite.games.mazelib.mapdata.MazeMapEdgeData;
 import de.elite.games.mazelib.mapdata.MazeMapFieldData;
 

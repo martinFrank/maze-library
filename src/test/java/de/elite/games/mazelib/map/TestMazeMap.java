@@ -1,6 +1,6 @@
 package de.elite.games.mazelib.map;
 
-import de.elite.games.maplib.MapStyle;
+import com.github.martinfrank.maplib.MapStyle;
 import de.elite.games.mazelib.data.TestMazeMapData;
 
 public class TestMazeMap extends MazeMap<TestMazeMapData, TestMazeMapField, TestMazeMapEdge, TestMazeMapNode, TestMazeMapWalker> {

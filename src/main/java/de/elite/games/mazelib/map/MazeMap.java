@@ -1,7 +1,7 @@
 package de.elite.games.mazelib.map;
 
-import de.elite.games.maplib.Map;
-import de.elite.games.maplib.MapStyle;
+import com.github.martinfrank.maplib.Map;
+import com.github.martinfrank.maplib.MapStyle;
 import de.elite.games.mazelib.MazeGenerationParams;
 import de.elite.games.mazelib.algorithm.PerfectMazeAlgorithm;
 import de.elite.games.mazelib.algorithm.RecursiveBacktrackerWithBlocks;

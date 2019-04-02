@@ -1,6 +1,6 @@
 package de.elite.games.mazelib.map;
 
-import de.elite.games.maplib.MapEdge;
+import com.github.martinfrank.maplib.MapEdge;
 
 public abstract class MazeMapEdge<D,
         F extends MazeMapField<?, F, E, N>,
