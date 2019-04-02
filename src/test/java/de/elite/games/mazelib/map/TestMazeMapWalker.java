@@ -1,14 +1,16 @@
 package de.elite.games.mazelib.map;
 
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
 
 public class TestMazeMapWalker extends MazeMapWalker<TestMazeMapField, TestMazeMapEdge, TestMazeMapNode> {
 
     @Override
     public boolean canEnter(TestMazeMapField from, TestMazeMapField into) {
-        Optional<TestMazeMapEdge> edge = from.getEdge(into);
-        return edge.map(testMapEdge -> testMapEdge.getData().getPassage().isOpen()).orElse(false);
+//        Optional<TestMazeMapEdge> edge = from.getEdge(into);
+//        return edge.map(testMapEdge -> testMapEdge.getData().getPassage().isOpen()).orElse(false);
+        TestMazeMapEdge edge = from.getEdge(into);
+        return edge.getData().getPassage().isOpen();
     }
 
     @Override

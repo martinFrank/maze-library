@@ -30,7 +30,13 @@ public class RecursiveBacktrackerWithBlocks<M extends MazeMap<?, F, E, N, ?>,
 
     private void updateFields() {
         for (F field : getMap().getFields()) {
-            long amount = field.getEdges().stream().filter(e -> e.getData().getPassage().isOpen()).count();
+//            long amount = field.getEdges().stream().filter(e -> e.getData().getPassage().isOpen()).count();
+            long amount = 0;
+            for (E edge : field.getEdges()) {
+                if (edge.getData().getPassage().isOpen()) {
+                    amount = amount + 1;
+                }
+            }
             if (!field.getData().isBlocked()) {
                 field.getData().setDeadEnd(amount == 1);
             } else {
@@ -102,11 +108,19 @@ public class RecursiveBacktrackerWithBlocks<M extends MazeMap<?, F, E, N, ?>,
     }
 
     private void addToClosed(int x, int y, Set<F> closed) {
-        getMap().getField(x, y).ifPresent(closed::add);
+//        getMap().getField(x, y).ifPresent(closed::add);
+        F f = getMap().getField(x, y);
+        if (f != null) {
+            closed.add(f);
+        }
     }
 
     private void setBlocked(int x, int y) {
-        getMap().getField(x, y).ifPresent(f -> f.getData().setBlocked(true));
+//        getMap().getField(x, y).ifPresent(f -> f.getData().setBlocked(true));
+        F f = getMap().getField(x, y);
+        if (f != null) {
+            f.getData().setBlocked(true);
+        }
     }
 
 }

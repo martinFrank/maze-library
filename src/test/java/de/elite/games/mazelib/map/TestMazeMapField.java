@@ -24,9 +24,20 @@ public class TestMazeMapField extends MazeMapField<TestMazeMapFieldData, TestMaz
         GraphicsContext gc = (GraphicsContext) graphics;
         gc.setFill(color);
         Shape shape = getShape().getTransformed();
-        double[] xs = shape.getPoints().stream().mapToDouble(Point::getX).toArray();
-        double[] ys = shape.getPoints().stream().mapToDouble(Point::getY).toArray();
-        int amount = Math.min(xs.length, ys.length);
+//        double[] xs = shape.getPoints().stream().mapToDouble(Point::getX).toArray();
+//        double[] ys = shape.getPoints().stream().mapToDouble(Point::getY).toArray();
+//        int amount = Math.min(xs.length, ys.length);
+
+        int amount = shape.getPoints().size();
+        double[] xs = new double[amount];
+        double[] ys = new double[amount];
+
+        for (int i = 0; i < amount; i++) {
+            Point point = shape.getPoints().get(i);
+            xs[i] = point.getX();
+            ys[i] = point.getY();
+        }
+
         gc.fillPolygon(xs, ys, amount);
         for (TestMazeMapEdge e : getEdges()) {
             e.draw(graphics);

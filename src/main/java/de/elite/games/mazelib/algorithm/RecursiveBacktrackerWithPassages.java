@@ -29,7 +29,13 @@ public class RecursiveBacktrackerWithPassages<M extends MazeMap<?, F, E, N, ?>,
 
     private void updateFields() {
         for (F field : getMap().getFields()) {
-            long amount = field.getEdges().stream().filter(e -> e.getData().getPassage().isOpen()).count();
+//            long amount = field.getEdges().stream().filter(e -> e.getData().getPassage().isOpen()).count();
+            long amount = 0;
+            for (E edge : field.getEdges()) {
+                if (edge.getData().getPassage().isOpen()) {
+                    amount = amount + 1;
+                }
+            }
             field.getData().setReachable(amount == 0);
             field.getData().setDeadEnd(amount == 1);
         }
