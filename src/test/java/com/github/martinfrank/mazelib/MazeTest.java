@@ -16,14 +16,18 @@ public class MazeTest {
 
     @Test
     public void testMazeRecursiveBackTrackerBlocks() {
-        TestMazeMap demoMap = testRecursiveBackTracker(MazeGenerationParams.AlgorithmType.RECURSIVE_BACKTRACKER_BLOCKS);
-        testAStar(demoMap);
+        for (MapStyle style : MapStyle.values()) {
+            TestMazeMap demoMap = testRecursiveBackTracker(style, MazeGenerationParams.AlgorithmType.RECURSIVE_BACKTRACKER_BLOCKS);
+            testAStar(demoMap);
+        }
     }
 
     @Test
     public void testMazeRecursiveBackTrackerPassages() {
-        TestMazeMap demoMap = testRecursiveBackTracker(MazeGenerationParams.AlgorithmType.RECURSIVE_BACKTRACKER_PASSAGES);
-        testAStar(demoMap);
+        for (MapStyle style : MapStyle.values()) {
+            TestMazeMap demoMap = testRecursiveBackTracker(style, MazeGenerationParams.AlgorithmType.RECURSIVE_BACKTRACKER_PASSAGES);
+            testAStar(demoMap);
+        }
     }
 
     private void testAStar(TestMazeMap demoMap) {
@@ -35,8 +39,8 @@ public class MazeTest {
         Assert.assertFalse(path.isEmpty());
     }
 
-    private TestMazeMap testRecursiveBackTracker(MazeGenerationParams.AlgorithmType algorithmus) {
-        TestMazeMap demoMap = mapFactory.createMap(14, 15, MapStyle.HEX_VERTICAL);
+    private TestMazeMap testRecursiveBackTracker(MapStyle style, MazeGenerationParams.AlgorithmType algorithmus) {
+        TestMazeMap demoMap = mapFactory.createMap(14, 15, style);
         MazeGenerationParams params = new MazeGenerationParams(algorithmus);
         demoMap.generateMaze(params);
         return demoMap;
