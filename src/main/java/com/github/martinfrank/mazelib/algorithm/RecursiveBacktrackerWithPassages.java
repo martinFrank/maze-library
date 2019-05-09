@@ -38,8 +38,7 @@ public class RecursiveBacktrackerWithPassages<M extends MazeMap<?, F, E, N, ?>,
     }
 
     private void withRecursiveBackTracker() {
-//        Stack<F> stack = new Stack<>();
-        Deque<F> stack = new ArrayDeque<F>();
+        Deque<F> stack = new ArrayDeque<>();
         F current = getMapAccessor().getRandomStart();
         Set<F> closed = new HashSet<>();
         closed.add(current);

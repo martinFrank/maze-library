@@ -8,10 +8,7 @@ import com.github.martinfrank.mazelib.map.MazeMapNode;
 import com.github.martinfrank.mazelib.mapdata.MazeMapEdgeData;
 import com.github.martinfrank.mazelib.mapdata.MazeMapFieldData;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.Stack;
+import java.util.*;
 
 public class RecursiveBacktrackerWithBlocks<M extends MazeMap<?, F, E, N, ?>,
         F extends MazeMapField<? extends MazeMapFieldData, F, E, N>,
@@ -45,7 +42,7 @@ public class RecursiveBacktrackerWithBlocks<M extends MazeMap<?, F, E, N, ?>,
     }
 
     private void withRecursiveBackTracker() {
-        Stack<F> stack = new Stack<>();
+        Deque<F> stack = new ArrayDeque<>();
         Set<F> closed = new HashSet<>();
         fillBorders(closed);
 
