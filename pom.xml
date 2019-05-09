@@ -10,7 +10,6 @@
     <organization>
         <name>Martin Frank</name>
     </organization>
-
     <properties>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
@@ -24,32 +23,21 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>de.elite.games</groupId>
-            <artifactId>com.github.martinfrank.drawlib</artifactId>
-            <version>0.4.0</version>
+            <groupId>com.github.martinfrank</groupId>
+            <artifactId>drawlib</artifactId>
+            <version>0.4.1</version>
         </dependency>
         <dependency>
-            <groupId>de.elite.games</groupId>
+            <groupId>com.github.martinfrank</groupId>
             <artifactId>geolib</artifactId>
-            <version>0.0.5</version>
+            <version>0.1.0</version>
         </dependency>
         <dependency>
-            <groupId>de.elite.games</groupId>
+            <groupId>com.github.martinfrank</groupId>
             <artifactId>maplib</artifactId>
-            <version>0.4.0</version>
+            <version>0.1.0</version>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.slf4j</groupId>-->
-        <!--<artifactId>slf4j-api</artifactId>-->
-        <!--<version>1.7.5</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>org.slf4j</groupId>-->
-        <!--<artifactId>slf4j-log4j12</artifactId>-->
-        <!--<version>1.7.5</version>-->
-        <!--</dependency>-->
     </dependencies>
-
 
     <build>
         <plugins>
@@ -63,4 +51,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
