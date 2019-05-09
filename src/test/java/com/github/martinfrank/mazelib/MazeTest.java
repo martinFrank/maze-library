@@ -11,22 +11,35 @@ import java.util.List;
 
 public class MazeTest {
 
-    @Test
-    public void testMaze() {
-        TestMazeMapPartFactory mapPartFactory = new TestMazeMapPartFactory();
-        TestMazeMapFactory mapFactory = new TestMazeMapFactory(mapPartFactory);
-        TestMazeMap demoMap = mapFactory.createMap(14, 15, MapStyle.HEX_VERTICAL);
-        demoMap.scale(11f);
-        MazeGenerationParams params = new MazeGenerationParams(MazeGenerationParams.AlgorithmType.RECURSIVE_BACKTRACKER_BLOCKS);
-        demoMap.generateMaze(params);
+    private final TestMazeMapPartFactory mapPartFactory = new TestMazeMapPartFactory();
+    private final TestMazeMapFactory mapFactory = new TestMazeMapFactory(mapPartFactory);
 
+    @Test
+    public void testMazeRecursiveBackTrackerBlocks() {
+        TestMazeMap demoMap = testRecursiveBackTracker(MazeGenerationParams.AlgorithmType.RECURSIVE_BACKTRACKER_BLOCKS);
+        testAStar(demoMap);
+    }
+
+    @Test
+    public void testMazeRecursiveBackTrackerPassages() {
+        TestMazeMap demoMap = testRecursiveBackTracker(MazeGenerationParams.AlgorithmType.RECURSIVE_BACKTRACKER_PASSAGES);
+        testAStar(demoMap);
+    }
+
+    private void testAStar(TestMazeMap demoMap) {
         TestMazeMapWalker walker = mapPartFactory.createWalker();
         TestMazeMapField start = getStartField(demoMap);
         TestMazeMapField end = getEndField(demoMap);
         Assert.assertNotEquals(start, end);
         List<TestMazeMapField> path = demoMap.aStar(start, end, walker, 500);
         Assert.assertFalse(path.isEmpty());
+    }
 
+    private TestMazeMap testRecursiveBackTracker(MazeGenerationParams.AlgorithmType algorithmus) {
+        TestMazeMap demoMap = mapFactory.createMap(14, 15, MapStyle.HEX_VERTICAL);
+        MazeGenerationParams params = new MazeGenerationParams(algorithmus);
+        demoMap.generateMaze(params);
+        return demoMap;
     }
 
     private TestMazeMapField getEndField(TestMazeMap demoMap) {
