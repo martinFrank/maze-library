@@ -13,19 +13,15 @@ import java.util.*;
 public class RecursiveBacktrackerWithBlocks<M extends MazeMap<?, F, E, N, ?>,
         F extends MazeMapField<? extends MazeMapFieldData, F, E, N>,
         E extends MazeMapEdge<? extends MazeMapEdgeData, F, E, N>,
-        N extends MazeMapNode<?, F, E, N>> extends AbstractAlgorithm<M, F, E, N> {
+        N extends MazeMapNode<?, F, E, N>> extends RecursiveBacktracker<M, F, E, N> {
 
     public RecursiveBacktrackerWithBlocks(M map) {
         super(map);
     }
 
-    @Override
-    public void createPerfectMaze() {
-        withRecursiveBackTracker();
-        updateFields();
-    }
 
-    private void updateFields() {
+    @Override
+    void updateFields() {
         for (F field : getMap().getFields()) {
             long amount = 0;
             for (E edge : field.getEdges()) {
@@ -41,7 +37,8 @@ public class RecursiveBacktrackerWithBlocks<M extends MazeMap<?, F, E, N, ?>,
         }
     }
 
-    private void withRecursiveBackTracker() {
+    @Override
+    void withRecursiveBackTracker() {
         Deque<F> stack = new ArrayDeque<>();
         Set<F> closed = new HashSet<>();
         fillBorders(closed);

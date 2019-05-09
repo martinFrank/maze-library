@@ -12,19 +12,14 @@ import java.util.*;
 public class RecursiveBacktrackerWithPassages<M extends MazeMap<?, F, E, N, ?>,
         F extends MazeMapField<? extends MazeMapFieldData, F, E, N>,
         E extends MazeMapEdge<? extends MazeMapEdgeData, F, E, N>,
-        N extends MazeMapNode<?, F, E, N>> extends AbstractAlgorithm<M, F, E, N> {
+        N extends MazeMapNode<?, F, E, N>> extends RecursiveBacktracker<M, F, E, N> {
 
     public RecursiveBacktrackerWithPassages(M map) {
         super(map);
     }
 
     @Override
-    public void createPerfectMaze() {
-        withRecursiveBackTracker();
-        updateFields();
-    }
-
-    private void updateFields() {
+    void updateFields() {
         for (F field : getMap().getFields()) {
             long amount = 0;
             for (E edge : field.getEdges()) {
@@ -37,7 +32,8 @@ public class RecursiveBacktrackerWithPassages<M extends MazeMap<?, F, E, N, ?>,
         }
     }
 
-    private void withRecursiveBackTracker() {
+    @Override
+    void withRecursiveBackTracker() {
         Deque<F> stack = new ArrayDeque<>();
         F current = getMapAccessor().getRandomStart();
         Set<F> closed = new HashSet<>();
