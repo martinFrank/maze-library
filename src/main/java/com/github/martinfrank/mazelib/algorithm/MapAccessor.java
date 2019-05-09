@@ -19,11 +19,9 @@ class MapAccessor<M extends MazeMap<?, F, E, N, ?>,
         N extends MazeMapNode<?, F, E, N>> {
 
     private final M map;
-    private final MapCarver<M, F, E, N> carver;
 
     MapAccessor(M map) {
         this.map = map;
-        this.carver = new MapCarver<>(map);
     }
 
     F getRandomStart() {

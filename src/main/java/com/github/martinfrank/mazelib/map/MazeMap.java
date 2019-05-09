@@ -32,13 +32,4 @@ public abstract class MazeMap<D,
         }
     }
 
-//    private PerfectMazeAlgorithm<? extends MazeMap,F,E,N> getAlgorithm(MazeGenerationParams mazeGenerationParams) {
-//        if (mazeGenerationParams.isRecursiveBcktrackerWithPassages()) {
-//            return new RecursiveBacktrackerWithPassages<>(this);
-//        }
-//        if (mazeGenerationParams.isKruskals()) {
-//            return new Kruskals<>(this);
-//        }
-//        return null;
-//    }
 }
