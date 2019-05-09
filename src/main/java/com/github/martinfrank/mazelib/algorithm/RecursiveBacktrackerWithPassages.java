@@ -29,7 +29,6 @@ public class RecursiveBacktrackerWithPassages<M extends MazeMap<?, F, E, N, ?>,
 
     private void updateFields() {
         for (F field : getMap().getFields()) {
-//            long amount = field.getEdges().stream().filter(e -> e.getData().getPassage().isOpen()).count();
             long amount = 0;
             for (E edge : field.getEdges()) {
                 if (edge.getData().getPassage().isOpen()) {
