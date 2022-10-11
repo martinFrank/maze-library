@@ -91,8 +91,8 @@ public class RecursiveBacktrackerWithBlocks<M extends MazeMap<?, F, E, N, ?>,
     }
 
     private boolean fillAdditionalRows() {
-        return getMap().getStyle() == MapStyle.SQUARE_DIAMOND ||
-                getMap().getStyle() == MapStyle.SQUARE_ISOMETRIC ||
+        return getMap().getStyle() == MapStyle.SQUARE_DIAMOND4 ||
+                getMap().getStyle() == MapStyle.SQUARE_ISOMETRIC4 ||
                 getMap().getStyle() == MapStyle.TRIANGLE_VERTICAL;
     }
 

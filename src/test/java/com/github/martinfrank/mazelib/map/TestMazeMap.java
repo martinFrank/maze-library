@@ -9,12 +9,5 @@ public class TestMazeMap extends MazeMap<TestMazeMapData, TestMazeMapField, Test
         super(width, height, style, testMapData);
     }
 
-    @Override
-    public void draw(Object graphics) {
-        for (TestMazeMapField field : getFields()) {
-            field.draw(graphics);
-        }
-
-    }
 
 }

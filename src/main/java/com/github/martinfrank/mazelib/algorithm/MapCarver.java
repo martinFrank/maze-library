@@ -88,11 +88,13 @@ class MapCarver<M extends MazeMap<?, F, E, N, ?>,
                 return getFieldsAroundTargetForHex(from, into);
             case HEX_VERTICAL:
                 return getFieldsAroundTargetForHex(from, into);
-            case SQUARE:
+            case SQUARE4:
                 return getFieldsAroundTargetForSquares(from, into);
-            case SQUARE_ISOMETRIC:
+            case SQUARE8:
                 return getFieldsAroundTargetForSquares(from, into);
-            case SQUARE_DIAMOND:
+            case SQUARE_DIAMOND4:
+                return getFieldsAroundTargetForSquares(from, into);
+            case SQUARE_ISOMETRIC4:
                 return getFieldsAroundTargetForSquares(from, into);
             default:
                 return getFieldsAroundTargetForSquares(from, into);

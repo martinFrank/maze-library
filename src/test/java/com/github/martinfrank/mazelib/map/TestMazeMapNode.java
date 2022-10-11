@@ -8,10 +8,5 @@ public class TestMazeMapNode extends MazeMapNode<TestMazeMapNodeData, TestMazeMa
         super(testPointData);
     }
 
-
-    @Override
-    public void draw(Object graphics) {
-    }
-
 }
 
